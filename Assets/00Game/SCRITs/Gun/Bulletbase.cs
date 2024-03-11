@@ -8,6 +8,7 @@ public class Bulletbase : MonoBehaviour
     [SerializeField] float _speed; 
     int _way = 1;
     float _lifeTime = 5;
+    [SerializeField]
     float _dmg = 0;
 
     SpriteRenderer _sprite;

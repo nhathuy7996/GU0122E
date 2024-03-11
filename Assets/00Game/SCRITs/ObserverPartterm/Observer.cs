@@ -5,18 +5,18 @@ using System;
 
 public class Observer : Singleton<Observer>
 {
-    Dictionary<string, List<Action<object>>> listAction = new Dictionary<string, List<Action<object>>>();
+    Dictionary<string, List<Action<object[]>>> listAction = new Dictionary<string, List<Action<object[]>>>();
      
-    public Observer AddListener(string key, Action<object> callback)
+    public Observer AddListener(string key, Action<object[]> callback)
     {
         if (!listAction.ContainsKey(key))
-            listAction.Add(key, new List<Action<object>>());
+            listAction.Add(key, new List<Action<object[]>>());
 
         listAction[key].Add(callback);
         return this;
     }
 
-    public Observer RemoveListener(string key, Action<object> callback)
+    public Observer RemoveListener(string key, Action<object[]> callback)
     {
         if (!listAction.ContainsKey(key))
             return this;
@@ -28,7 +28,7 @@ public class Observer : Singleton<Observer>
         return this;
     }
 
-    public Observer NOtify(string key, object data)
+    public Observer NOtify(string key, params object[] data)
     {
         if (!listAction.ContainsKey(key))
             return this;
@@ -37,7 +37,9 @@ public class Observer : Singleton<Observer>
         {
             a?.Invoke(data);
         }
-
+         
         return this;
     }
+
+     
 }

@@ -17,6 +17,23 @@ public class DataController : Singleton<DataController>
 
     float timer = 3;
     bool isShowed = true;
+    private int _score = 0;
+
+    public int Score
+    {
+        get
+        {
+            return _score;
+        }
+
+        set {
+            if (value < 0)
+                return;
+            _score = value;
+            Observer.instant.NOtify("SCORE", this._score);
+
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {

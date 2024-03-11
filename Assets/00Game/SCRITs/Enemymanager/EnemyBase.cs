@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyBase : MonoBehaviour, IDamageAble
 {
-    float _HP = 100;
+    float _HP = 5;
     [SerializeField] float _range = 10;
     [SerializeField] float _speed = 5;
 
@@ -57,7 +57,11 @@ public class EnemyBase : MonoBehaviour, IDamageAble
     {
         this._HP -= dmg;
         if (this._HP <= 0)
+        {
             this._HP = 0;
+            DataController.instant.Score++;
+            Destroy(this.gameObject);
+        }
     }
 
     void OnDrawGizmosSelected()

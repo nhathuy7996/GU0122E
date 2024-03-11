@@ -2,7 +2,7 @@
   "_maxBullet": 22,
         "_speedBullet": 10, 
         "_speedFire": 1,
-        "_dmgBullet": 0, 
+        "_dmgBullet": 10, 
         "_bulletLifeTime": 5,
 "image":"GunImages/1",
 "_gunController":"GunPrefab/GunController1"
