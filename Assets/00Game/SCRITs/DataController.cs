@@ -17,6 +17,7 @@ public class DataController : Singleton<DataController>
 
     float timer = 3;
     bool isShowed = true;
+    [SerializeField]
     private int _score = 0;
 
     public int Score
@@ -37,7 +38,7 @@ public class DataController : Singleton<DataController>
     // Start is called before the first frame update
     void Start()
     {
-       
+       DontDestroyOnLoad(this.gameObject);
        // h = StartCoroutine(Test2("https://docs.unity3d.com/Manual/ExecutionOrder.html"));
         TextAsset[] files = Resources.LoadAll<TextAsset>("DATA");
         foreach (var i in files)

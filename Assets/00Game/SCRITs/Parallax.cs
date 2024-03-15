@@ -13,12 +13,18 @@ public class Parallax : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerController = FindAnyObjectByType<PlayerController>();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (LevelManager.instant.state != LevelManager.LEVEL_STATE.Playing)
+            return;
+
+        if (playerController == null)
+            playerController = PlayerController.instant;
+
         if (playerController.state == PlayerController.PLAYER_STATE.IDLE)
             return;
 

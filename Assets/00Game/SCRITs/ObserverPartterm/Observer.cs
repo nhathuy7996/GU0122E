@@ -6,7 +6,13 @@ using System;
 public class Observer : Singleton<Observer>
 {
     Dictionary<string, List<Action<object[]>>> listAction = new Dictionary<string, List<Action<object[]>>>();
-     
+
+
+    private void Start()
+    {
+        DontDestroyOnLoad(this.gameObject);
+    }
+
     public Observer AddListener(string key, Action<object[]> callback)
     {
         if (!listAction.ContainsKey(key))

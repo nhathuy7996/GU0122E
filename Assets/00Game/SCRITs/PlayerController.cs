@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour, IDamageAble
+public class PlayerController : Singleton<PlayerController>, IDamageAble
 {
 
     Rigidbody2D _rigi;
@@ -28,11 +28,16 @@ public class PlayerController : MonoBehaviour, IDamageAble
         FALL = 3
     }
 
+    
+
     // Start is called before the first frame update
     void Start()
     {
+        DontDestroyOnLoad(this.gameObject);
         _rigi = GetComponent<Rigidbody2D>();
         _animCtrl = this.GetComponentInChildren<AnimControllerbase>();
+
+        this.gameObject.SetActive(false);
     }
 
     // Update is called once per frame

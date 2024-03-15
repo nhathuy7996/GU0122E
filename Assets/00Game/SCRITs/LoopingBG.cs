@@ -19,7 +19,8 @@ public class LoopingBG : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (LevelManager.instant.state != LevelManager.LEVEL_STATE.Playing)
+            return;
         if (Mathf.Abs(this.transform.position.x - Camera.main.transform.position.x) > _widthBG)
         {
             float offsetX = Mathf.Abs(this.transform.position.x - Camera.main.transform.position.x) - _widthBG;

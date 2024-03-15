@@ -13,13 +13,20 @@ public class EnemyBase : MonoBehaviour, IDamageAble
     // Start is called before the first frame update
     void Start()
     {
-        _playerCtrl = FindAnyObjectByType<PlayerController>();
+       
         _rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (LevelManager.instant.state != LevelManager.LEVEL_STATE.Playing)
+            return;
+
+
+        if (_playerCtrl == null)
+            _playerCtrl = PlayerController.instant;
+
         if (Vector2.Distance(this.transform.position, _playerCtrl.transform.position) <= _range)
         {
             Debug.DrawLine(this.transform.position, _playerCtrl.transform.position,Color.red);
