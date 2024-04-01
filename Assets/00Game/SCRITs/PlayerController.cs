@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour, IDamageAble
@@ -42,7 +43,7 @@ public class PlayerController : MonoBehaviour, IDamageAble
         UpdateState();
         _animCtrl.ChangeAnim(_state);
 
-        _movement.x = _speed * Input.GetAxisRaw("Horizontal");
+        _movement.x = _speed * JoyStick.Instant.DIR.x; //Input.GetAxisRaw("Horizontal");
         _movement.y = this._rigi.velocity.y;
 
         this._rigi.velocity = _movement;
@@ -51,7 +52,7 @@ public class PlayerController : MonoBehaviour, IDamageAble
         else if (_movement.x < 0)
             this.transform.localScale = new Vector3(-1,1,1);
 
-        if (Input.GetKeyDown(KeyCode.Space) && _isOnGround)
+        if (JoyStick.Instant.DIR.y > 0 && _isOnGround)
         {
             _isOnGround = false;
             _rigi.AddForce(new Vector2(0,_jumpForce));
