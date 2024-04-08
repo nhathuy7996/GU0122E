@@ -36,6 +36,8 @@ public class Bulletbase : MonoBehaviour
         this._lifeTime -= Time.deltaTime;
         if(this._lifeTime <= 0)
             this.gameObject.SetActive(false);
+
+        Debug.Log("HHH");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

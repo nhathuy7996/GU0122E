@@ -34,6 +34,11 @@ public class PlayerController : MonoBehaviour, IDamageAble
     {
         _rigi = GetComponent<Rigidbody2D>();
         _animCtrl = this.GetComponentInChildren<AnimControllerbase>();
+
+        AdManger.instant.ShowAoA(isShowSuccess =>
+        {
+            Debug.LogError("Call on reward close");
+        });
     }
 
     // Update is called once per frame
@@ -43,7 +48,7 @@ public class PlayerController : MonoBehaviour, IDamageAble
         UpdateState();
         _animCtrl.ChangeAnim(_state);
 
-        _movement.x = _speed * JoyStick.Instant.DIR.x; //Input.GetAxisRaw("Horizontal");
+        //_movement.x = _speed * JoyStick.Instant.DIR.x; //Input.GetAxisRaw("Horizontal");
         _movement.y = this._rigi.velocity.y;
 
         this._rigi.velocity = _movement;
@@ -52,11 +57,11 @@ public class PlayerController : MonoBehaviour, IDamageAble
         else if (_movement.x < 0)
             this.transform.localScale = new Vector3(-1,1,1);
 
-        if (JoyStick.Instant.DIR.y > 0 && _isOnGround)
-        {
-            _isOnGround = false;
-            _rigi.AddForce(new Vector2(0,_jumpForce));
-        }
+        //if (JoyStick.Instant.DIR.y > 0 && _isOnGround)
+        //{
+        //    _isOnGround = false;
+        //    _rigi.AddForce(new Vector2(0,_jumpForce));
+        //}
 
         //_animCtrl.ChangeBlend("isShoot", Input.GetKeyDown(KeyCode.C)? 1: 0);
         if (Input.GetKey(KeyCode.C))

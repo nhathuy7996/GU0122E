@@ -50,8 +50,9 @@ public class DrawController : MonoBehaviour
     }
 
 
-    void StartGame()
+    void StartGame() 
     {
+      
         Vector2[] poss = new Vector2[Listpos.Count];
         for (int i = 0; i < Listpos.Count; i++)
         {
